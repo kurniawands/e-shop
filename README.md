@@ -7,7 +7,7 @@ First, install dependencies:
 ```
 npm install
 # or
-yarn insall
+yarn install
 # or
 pnpm install
 ```
