@@ -1,16 +1,16 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
+  { name: "Dashboard", href: "#", current: true },
+  { name: "Team", href: "#", current: false },
+  { name: "Projects", href: "#", current: false },
+  { name: "Calendar", href: "#", current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
@@ -51,10 +51,12 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
                       </a>
@@ -97,7 +99,10 @@ export default function Navbar() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Your Profile
                           </a>
@@ -107,7 +112,10 @@ export default function Navbar() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Settings
                           </a>
@@ -117,7 +125,10 @@ export default function Navbar() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Sign out
                           </a>
@@ -138,10 +149,12 @@ export default function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -151,5 +164,52 @@ export default function Navbar() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }
+
+// export default function TopRated() {
+//   return (
+//     <div className="max-w-7xl mx-auto my-20 ">
+//       <h1 className="w-fit mx-auto mb-10 text-[40px] font-bold border-b border-white">
+//         TOP RATED PRODUCTS
+//       </h1>
+//       <div className="flex flex-col bg-gray-800 mx-10 mb-5">
+//         {top.map((item) => (
+//           <div
+//             key={item.name}
+//             className="relative inline-block bg-gray-600 border"
+//           >
+//             <Image
+//               className="block w-full h-auto object-cover object-center border"
+//               src={item.img}
+//               width={300}
+//               height={300}
+//             />
+
+//             <div className="absolute bottom-0 left-0 right-0 bg-red-900 p-[10px] transition-all duration-300 ease-in-out opacity-0 hover:opacity-100 border">
+//               <p className="w-52 my-auto text-3xl font-medium p-2 border">
+//                 {item.name}
+//               </p>
+//               <p className="w-52 my-auto text-2xl border">{item.price}</p>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//       <div className="grid grid-cols-5 justify-between bg-gray-800 mx-10 my-5">
+//         {products.map((item) => (
+//           <div key={item.name} className="text-center my-10 bg-gray-600 mx-10">
+//             <Image
+//               className="mx-auto my-4"
+//               src={item.img}
+//               width={100}
+//               height={100}
+//             />
+//             <p className="w-32 mx-auto my-5 text-xl bg-red-900 font-medium p-2 mt-10">
+//               {item.name}
+//             </p>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
