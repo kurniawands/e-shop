@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model customers {
+  idcustomer   String   @id @db.VarChar(7)
+  customername String   @unique(map: "customername_UNIQUE") @db.VarChar(128)
+  email        String?  @db.VarChar(128)
+  address      String?  @db.VarChar(256)
+  orders       orders[]
+}
+
+model deliveryservice {
+  iddeliveryservice                                          String         @id @db.VarChar(4)
+  servicename                                                String         @db.VarChar(128)
+  cost                                                       Decimal        @db.Decimal(4, 2)
+  orderdetails_orderdetails_deliveryserviceTodeliveryservice orderdetails[] @relation("orderdetails_deliveryserviceTodeliveryservice")
+}
+
+model orderdetails {
+  orderid                                                       String          @db.VarChar(9)
+  productid                                                     String          @db.VarChar(9)
+  quantity                                                      Int             @default(1)
+  deliveryservice                                               String          @db.VarChar(4)
+  deliveryservice_orderdetails_deliveryserviceTodeliveryservice deliveryservice @relation("orderdetails_deliveryserviceTodeliveryservice", fields: [deliveryservice], references: [iddeliveryservice], onDelete: NoAction, onUpdate: NoAction, map: "delivery")
+  orders                                                        orders          @relation(fields: [orderid], references: [idorder], onDelete: NoAction, onUpdate: NoAction, map: "order")
+  product                                                       product         @relation(fields: [productid], references: [idproduct], onDelete: NoAction, onUpdate: NoAction, map: "product")
+
+  @@id([orderid, productid])
+  @@index([deliveryservice], map: "delivery_idx")
+  @@index([productid], map: "product_idx")
+}
+
+model orders {
+  idorder                                              String         @id @db.VarChar(9)
+  customerid                                           String         @db.VarChar(7)
+  paymentdetail                                        Int
+  paymentservice                                       String         @db.VarChar(4)
+  orderdetails                                         orderdetails[]
+  customers                                            customers      @relation(fields: [customerid], references: [idcustomer], onDelete: NoAction, onUpdate: NoAction, map: "customer")
+  paymentdetails                                       paymentdetails @relation(fields: [paymentdetail], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "paydetail")
+  paymentservice_orders_paymentserviceTopaymentservice paymentservice @relation("orders_paymentserviceTopaymentservice", fields: [paymentservice], references: [idpaymentservice], onDelete: NoAction, onUpdate: NoAction, map: "payser")
+
+  @@index([customerid], map: "customer_idx")
+  @@index([paymentdetail], map: "paydetail_idx")
+  @@index([paymentservice], map: "payser_idx")
+}
+
+model paymentdetails {
+  id           Int                   @id
+  totalpayment Decimal               @default(0.00) @db.Decimal(11, 2)
+  status       paymentdetails_status @default(unpaid)
+  orders       orders[]
+}
+
+model paymentservice {
+  idpaymentservice                             String   @id @db.VarChar(4)
+  servicename                                  String   @db.VarChar(128)
+  additionalcost                               Decimal  @default(0.00) @db.Decimal(4, 2)
+  orders_orders_paymentserviceTopaymentservice orders[] @relation("orders_paymentserviceTopaymentservice")
+}
+
+model product {
+  idproduct    String         @id @db.VarChar(9)
+  productname  String         @db.VarChar(128)
+  price        Decimal        @db.Decimal(10, 2)
+  stock        Int            @default(0)
+  orderdetails orderdetails[]
+}
+
+enum paymentdetails_status {
+  paid
+  unpaid
+}
