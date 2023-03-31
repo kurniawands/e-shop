@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -85,13 +87,15 @@
 
 html,
 body {
-  background-color: #222222;
-  font-family: sans-serif;
-  color: white;
+  background-color: #fffefb;
+  font-family: Inter, sans-serif;
+  color: #1c1c18;
   margin: 0;
   padding: 0;
-  width: screen;
-  overflow-x: hidden;
+}
+
+div {
+  border-color: #1c1c18;
 }
 
 /* body {
@@ -109,8 +113,8 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: light) {
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
-}
+} */
