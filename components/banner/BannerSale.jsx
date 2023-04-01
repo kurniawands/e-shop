@@ -7,6 +7,7 @@ export default function BannerSale() {
         <div className="relative">
           <Image
             src="/foot-banner.png"
+            alt="Sale"
             width={1200}
             height={400}
             className="mx-auto"

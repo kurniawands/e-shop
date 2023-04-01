@@ -14,9 +14,9 @@ export default function Footer() {
   };
 
   const contact = [
-    { name: "Google", src: "/google.svg" },
-    { name: "Facebook", src: "/facebook.svg" },
-    { name: "Whatsapp", src: "/whatsapp.svg" },
+    { name: "Google", src: "/google.svg", alt: "Google" },
+    { name: "Facebook", src: "/facebook.svg", alt: "Facebook" },
+    { name: "Whatsapp", src: "/whatsapp.svg", alt: "Whatsapp" },
   ];
 
   return (
@@ -39,6 +39,7 @@ export default function Footer() {
                   {showImage && (
                     <Image
                       src="send-email.svg"
+                      alt="email"
                       width={24}
                       height={24}
                       className="absolute top-1/2 left-32 transform -translate-y-1/2 z-10"
@@ -47,7 +48,12 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex flex-row">
-                <Image src="headphone.svg" width={45} height={45} />
+                <Image
+                  src="headphone.svg"
+                  alt="Call us"
+                  width={45}
+                  height={45}
+                />
                 <div className="my-auto ml-5 font-semibold text-sm text-[#5f5f5f]">
                   Call us 24/7 :<br />
                   (+62) 0123 567 789
@@ -57,7 +63,12 @@ export default function Footer() {
           </div>
           <div className="flex flex-row h-56 mx-12 justify-between">
             <div className="flex flex-col justify-between w-60 h-full">
-              <Image src="logo-tulisan.svg" width={200} height={200} />
+              <Image
+                src="logo-tulisan.svg"
+                alt="c-things"
+                width={200}
+                height={200}
+              />
               <div className="text-custom-4">
                 64 st james boulevard
                 <br />
@@ -68,6 +79,7 @@ export default function Footer() {
                   <Image
                     key={item.name}
                     src={item.src}
+                    alt={item.alt}
                     width={24}
                     height={24}
                   />
