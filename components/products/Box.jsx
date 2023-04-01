@@ -5,8 +5,8 @@ export default function Box({ items }) {
   return (
     <div className="grid grid-cols-3 gap-5">
       {items.map((item) => (
-        <Link href="/">
-          <div key={item.ID} className="px-3 py-7 border rounded-xl">
+        <Link key={item.ID} href="/">
+          <div className="px-3 py-7 border rounded-xl">
             <div className="flex flex-col h-64">
               <div className="h-40">
                 <Image

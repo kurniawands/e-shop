@@ -75,8 +75,8 @@ export default function Popular() {
       <h1 className="text-center mb-10 text-3xl font-bold">Popular Products</h1>
       <div className="grid grid-cols-4 gap-5 px-10">
         {products.map((item) => (
-          <Link href="/">
-            <div key={item.ID} className="px-3 py-7 border rounded-xl">
+          <Link key={item.ID} href="/">
+            <div className="px-3 py-7 border rounded-xl">
               <div className="flex flex-col h-64">
                 <div className="h-40">
                   <Image

@@ -47,6 +47,7 @@ export default function Carousel() {
                 <Image
                   key={image.id}
                   src={image.src}
+                  alt="Carousel"
                   fill
                   objectFit="contain"
                   className="animate-fadeIn"
