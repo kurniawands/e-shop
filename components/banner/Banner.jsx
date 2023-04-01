@@ -17,32 +17,32 @@ const Banner = () => {
 
   return (
     <>
-      <div className="relative max-w-3xl mx-auto">
+      <div className="relative max-w-3xl max-h-96 mx-auto my-10">
         <Slider {...settings}>
           <div>
             <Image
               className="mx-auto"
-              src="/favicon.ico"
-              width={100}
-              height={100}
+              src="/product/Intel Core I9 13900KS.jpg"
+              width={400}
+              height={300}
               alt="Banner 1"
             />
           </div>
           <div>
             <Image
               className="mx-auto"
-              src="/logo.png"
-              width={100}
-              height={100}
+              src="/product/Samsung Oddysey Neo G8.jpg"
+              width={500}
+              height={500}
               alt="Banner 2"
             />
           </div>
           <div>
             <Image
               className="mx-auto"
-              src="/vercel.svg"
-              width={100}
-              height={100}
+              src="/product/MSI B760 TOMAHAWK.jpg"
+              width={500}
+              height={500}
               alt="Banner 3"
             />
           </div>
