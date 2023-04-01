@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import { Inter } from "next/font/google";
 import Top from "@/components/header/Top";
 import Header from "@/components/header/Header";
 import Navbar from "@/components/header/Navbar";
-import TopRated from "@/components/products/TopRated";
-import Carousel from "@/components/carousel/Carousel";
+import Banner from "@/components/banner/Banner";
+import Popular from "@/components/products/Popular";
+import BannerSale from "@/components/banner/BannerSale";
+import Benefit from "@/components/other/Benefit";
 import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,14 +24,11 @@ export default function Home() {
         <Top />
         <Header />
         <Navbar />
+        <Banner />
+        <Popular />
+        <BannerSale />
+        <Benefit />
         <Footer />
-        <div className="w-fit h-fit mx-auto my-40 bg-custom-3">
-          <Link href="/auth/login" className="text-[128px]">
-            LOGIN
-          </Link>
-        </div>
-        <Carousel />
-        <TopRated />
       </main>
     </>
   );
