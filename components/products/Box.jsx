@@ -1,22 +1,37 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Box({ items }) {
   return (
-    <div className="flex flex-row flex-wrap justify-between space-x-10">
+    <div className="grid grid-cols-3 gap-5">
       {items.map((item) => (
-        <div className="mb-14">
-          <div className="text-center mb-7">
-            <Image
-              className="mx-auto"
-              src={item.img}
-              width={150}
-              height={150}
-            />
-            <p className="w-52 text-xl bg-red-900 font-medium p-2 mt-10">
-              {item.name}
-            </p>
+        <Link href="/">
+          <div key={item.ID} className="px-3 py-7 border rounded-xl">
+            <div className="flex flex-col h-64">
+              <div className="h-40">
+                <Image
+                  className="max-h-full mx-auto object-contain"
+                  src={item.Path}
+                  width={300}
+                  height={300}
+                />
+              </div>
+              <div className="flex flex-col h-full justify-between">
+                <div className="text-lg text-custom-4">{item.Name}</div>
+                <div className="font-semibold text-[#4a4a4a]">
+                  Rp. {item.Price}
+                </div>
+                <div className="flex flex-row space-x-2">
+                  <Image src="/rating.svg" width={15} height={15} />
+                  <Image src="/rating.svg" width={15} height={15} />
+                  <Image src="/rating.svg" width={15} height={15} />
+                  <Image src="/rating.svg" width={15} height={15} />
+                  <Image src="/rating.svg" width={15} height={15} />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

@@ -1,43 +1,50 @@
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 const navigation = [
-  { name: "About", href: "/about" },
-  { name: "Computer", href: "/Computer" },
-  { name: "Laptop", href: "/Laptop" },
-  { name: "Products", href: "/Products" },
-  { name: "Contact Us", href: "/Contact" },
+  { name: "Home", href: "/" },
+  { name: "Catalog", href: "/catalog" },
+  { name: "Blog", href: "/blog" },
+  { name: "Pages", href: "/pages" },
+  { name: "About us", href: "/about" },
 ];
 
 export default function Navbar() {
+  const [rotate, setRotate] = useState(false);
+
+  const handleRotate = () => {
+    setRotate(!rotate);
+  };
+
   return (
     <>
-      <header className="flex mx-auto bg-[#570709] max-w-7xl justify-between px-5 py-7 text-lg font-medium">
-        <div>
-          <Link href="/">
-            <Image alt="logo" src="/logo.png" width={70} height={70} />
-          </Link>
+      <div className="flex mx-auto max-w-7xl justify-between text-lg font-medium">
+        <div className="flex flex-row w-56 h-16 bg-custom-3">
+          <div className="mx-4 my-auto">Browse categories</div>
+          <Image
+            src="/category-arrow-down.svg"
+            width={24}
+            height={24}
+            className={
+              rotate ? "transform rotate-180 duration-500" : "duration-500"
+            }
+            onClick={handleRotate}
+          />
         </div>
         <nav className="my-auto">
-          {/* <ul className="justify-center">
-            <Link href="/products">
-              <ul>Products</ul>
-            </Link>
-          </ul> */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-8">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href}>
+              <Link key={item.name} href={item.href}>
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </nav>
-        <div className="my-auto">
-          <Link href="/auth/login">
-            <button>Login</button>
-          </Link>
+        <div className="my-auto font-bold text-custom-4">
+          30 Days Free Return
         </div>
-      </header>
+      </div>
     </>
   );
 }
