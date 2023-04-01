@@ -35,9 +35,9 @@ export default function Navbar() {
         <nav className="my-auto">
           <div className="flex space-x-8">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href}>
+              <Link key={item.name} href={item.href}>
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </nav>
