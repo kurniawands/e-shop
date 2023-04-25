@@ -10,15 +10,31 @@ type SqlCust struct {
 }
 
 type SqlOrder struct {
-	ID     string `json:"ordid"`
-	Cid    string `json:"custid"`
-	Paydet string `json:"paydet"`
-	Payser string `json:"payserv"`
+	ID   string `json:"ordid"`
+	Cid  string `json:"custid"`
+	Date string `json:"orddate"`
 }
 
-type SqlProd struct {
-	ID    string  `json:"prodid"`
-	Name  string  `json:"prodname"`
-	Price float64 `json:"prodprice"`
-	Stock int     `json:"prodstock"`
+type SqlProdComplete struct {
+	ID       string  `json:"prodid"`
+	Name     string  `json:"prodname"`
+	Category string  `json:"prodcat"`
+	Price    int     `json:"prodprice"`
+	Stock    int     `json:"prodstock"`
+	Rating   float64 `json:"prodrate"`
+	Desc     string  `json:"proddes"`
+	Imgpath  string  `json:"prodimgpath"`
+}
+
+type SqlProdSimple struct {
+	ID      string  `json:"prodid"`
+	Name    string  `json:"prodname"`
+	Price   int     `json:"prodprice"`
+	Rating  float64 `json:"prodrate"`
+	Imgpath string  `json:"prodimgpath"`
+}
+
+type SqlProdTop struct {
+	ID      string `json:"prodid"`
+	Imgpath string `json:"prodimgpath"`
 }
