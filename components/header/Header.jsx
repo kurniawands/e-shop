@@ -5,7 +5,7 @@ import SearchBar from "../search/SearchBar";
 const user = [
   { name: "Sign in", src: "/profile.svg", href: "/auth/login" },
   { name: "Favorite", src: "/favorite.svg", href: "/" },
-  { name: "Cart", src: "/cart.svg", href: "/" },
+  { name: "Cart", src: "/cart.svg", href: "/cart" },
 ];
 
 export default function Header() {
