@@ -12,7 +12,7 @@ func StartS() {
 		var prod dbSql.SqlProdSimple
 		var prods []dbSql.SqlProdSimple
 
-		row := dbSql.SqlComm("SELECT * FROM product")
+		row := dbSql.SqlComm("SELECT idproduct, productname, price, rating, imagepath FROM product")
 
 		for row.Next() {
 			err := row.Scan(&prod.ID, &prod.Name, &prod.Price, &prod.Rating, &prod.Imgpath)
