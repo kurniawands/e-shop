@@ -3,15 +3,18 @@ package webHtml
 import (
 	"backend/dbSql"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func StartS() {
 	r := gin.Default()
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	r.Use(cors.New(config))
 	r.GET("/catalog", func(c *gin.Context) {
 		var prod dbSql.SqlProdSimple
 		var prods []dbSql.SqlProdSimple
-
 		row := dbSql.SqlComm("SELECT idproduct, productname, price, rating, imagepath FROM product")
 
 		for row.Next() {
