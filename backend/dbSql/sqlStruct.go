@@ -9,6 +9,11 @@ type SqlCust struct {
 	Address  string `json:"custaddress"`
 }
 
+type UsLog struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 type SqlOrder struct {
 	ID   string `json:"ordid"`
 	Cid  string `json:"custid"`

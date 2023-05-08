@@ -31,3 +31,13 @@ func SqlComm(sql string, s ...interface{}) sql.Rows {
 	}
 	return *result
 }
+
+func checkEmail(email string) bool {
+	result, err := db.Query("SELECT EXISTS(SELECT 1 FROM users WHERE email =? LIMIT 1)", email)
+	if err != nil {
+		panic(err)
+	}
+	var res bool
+	result.Scan(&res)
+	return res
+}
