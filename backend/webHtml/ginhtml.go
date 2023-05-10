@@ -1,42 +1,31 @@
 package webHtml
 
 import (
-	"backend/dbSql"
+	au "backend/auth"
+	db "backend/dbSql"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 )
 
 func StartS() {
 	r := gin.Default()
+	store := cookie.NewStore([]byte("secret"))
+	r.Use(sessions.Sessions("mysession", store))
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
 	r.Use(cors.New(config))
 	r.GET("/catalog", func(c *gin.Context) {
-		var prod dbSql.SqlProdSimple
-		var prods []dbSql.SqlProdSimple
-		row := dbSql.SqlComm("SELECT idproduct, productname, price, rating, imagepath FROM product")
-
-		for row.Next() {
-			err := row.Scan(&prod.ID, &prod.Name, &prod.Price, &prod.Rating, &prod.Imgpath)
-			if err != nil {
-				panic(err)
-			}
-			prods = append(prods, prod)
-		}
+		prods := db.GetCatalog()
 		c.JSON(200, prods)
 	})
 	r.GET("/catalog/:id", func(c *gin.Context) {
 		prodid := c.Param("id")
-		row := dbSql.SqlComm("SELECT * FROM product WHERE idproduct = ?", prodid)
-		var prod dbSql.SqlProdComplete
-		for row.Next() {
-			err := row.Scan(&prod.ID, &prod.Name, &prod.Category, &prod.Price, &prod.Stock, &prod.Rating, &prod.Desc, &prod.Imgpath)
-			if err != nil {
-				panic(err)
-			}
-		}
+		prod := db.GetProd(prodid)
 		c.JSON(200, prod)
 	})
+	r.POST("/login", au.ULogIn)
 	r.Run(":8000")
 }
