@@ -1,7 +1,19 @@
+import { useEffect, useState } from "react";
 import Box from "./Box";
 import products from "../../data/proddata.json";
 
 export default function Catalog() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:8000/catalog");
+      const jsonData = await response.json();
+      setData(jsonData);
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="flex flex-row max-w-7xl mx-auto my-20 space-x-5">
@@ -58,7 +70,7 @@ export default function Catalog() {
           </div>
         </div>
         <div className="w-full">
-          <Box items={products} />
+          <Box items={data} />
         </div>
       </div>
     </>
