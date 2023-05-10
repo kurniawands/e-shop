@@ -20,6 +20,7 @@ func ULogIn(c *gin.Context) {
 	}
 
 	if !db.CheckEmail(user.Email) {
+		fmt.Println(user.Email)
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Email"})
 		fmt.Println("Invalid Email")
 		return

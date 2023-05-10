@@ -6,7 +6,13 @@ func CheckEmail(email string) bool {
 		panic(err)
 	}
 	var res bool
-	result.Scan(&res)
+	for result.Next() {
+		err = result.Scan(&res)
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	return res
 }
 
@@ -46,10 +52,13 @@ func GetIdMail(mail string) string {
 	if err != nil {
 		panic(err)
 	}
-	err = row.Scan(&id)
-	if err != nil {
-		panic(err)
+	for row.Next() {
+		err = row.Scan(&id)
+		if err != nil {
+			panic(err)
+		}
 	}
+
 	return id
 }
 
@@ -59,9 +68,12 @@ func GetPass(id string) string {
 	if err != nil {
 		panic(err)
 	}
-	err = row.Scan(&pass)
-	if err != nil {
-		panic(err)
+	for row.Next() {
+		err = row.Scan(&pass)
+		if err != nil {
+			panic(err)
+		}
 	}
+
 	return pass
 }
