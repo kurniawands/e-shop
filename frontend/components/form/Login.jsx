@@ -1,7 +1,26 @@
+import { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:8000/login", {
+        email,
+        password,
+      });
+      console.log(Response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="max-w-7xl mx-auto pt-5 border">
@@ -39,13 +58,14 @@ export default function Login() {
                   Daftar
                 </Link>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mt-8">
                   <div className="text-xs">Phone Number or Email</div>
                   <div className="h-10 my-1 items-center rounded-lg border">
                     <input
                       type="text"
-                      id="phone-email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full h-full px-3 rounded-lg"
                     ></input>
                   </div>
@@ -53,7 +73,8 @@ export default function Login() {
                   <div className="h-10 my-1 items-center rounded-lg border">
                     <input
                       type="password"
-                      id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="w-full h-full px-3 rounded-lg"
                     ></input>
                   </div>
