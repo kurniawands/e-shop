@@ -4,6 +4,8 @@ import (
 	db "backend/dbSql"
 	"net/http"
 
+	"fmt"
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -13,11 +15,13 @@ func ULogIn(c *gin.Context) {
 	var uid string
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+		fmt.Println("Invalid Request")
 		return
 	}
 
 	if !db.CheckEmail(user.Email) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Email"})
+		fmt.Println("Invalid Email")
 		return
 	} else {
 		uid = db.GetIdMail(user.Email)
@@ -25,6 +29,7 @@ func ULogIn(c *gin.Context) {
 
 	if !checkAuth(uid, user.Password) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Password"})
+		fmt.Println("Invalid Password")
 		return
 	}
 
@@ -36,4 +41,8 @@ func ULogIn(c *gin.Context) {
 
 	// Redirect to home page
 	c.Redirect(http.StatusSeeOther, "/")
+}
+
+func GetUserData(c *gin.Context) {
+
 }
