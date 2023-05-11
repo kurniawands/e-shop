@@ -1,26 +1,7 @@
-import { useState } from "react";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await axios.post("http://localhost:8000/login", {
-        email,
-        password,
-      });
-      console.log(Response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+export default function Register() {
   return (
     <>
       <div className="max-w-7xl mx-auto pt-5 border">
@@ -50,45 +31,36 @@ export default function Login() {
           <div className="flex w-1/2 pl-10">
             <div className="w-[400px] mr-3 pt-6 px-10 pb-8 border">
               <div className="font-semibold text-2xl text-center">
-                Masuk Sekarang
+                Daftar Sekarang
               </div>
               <div className="mt-2 text-sm text-center">
-                Belum punya akun C-things?{" "}
-                <Link href="/auth/register" className="text-custom-4">
-                  Daftar
+                Sudah punya akun C-things?{" "}
+                <Link href="/auth/login" className="text-custom-4">
+                  Masuk
                 </Link>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="mt-8">
                   <div className="text-xs">Phone Number or Email</div>
                   <div className="h-10 my-1 items-center rounded-lg border">
                     <input
                       type="text"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="phone-email"
                       className="w-full h-full px-3 rounded-lg"
                     ></input>
                   </div>
-                  <div className="text-xs">Password</div>
-                  <div className="h-10 my-1 items-center rounded-lg border">
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full h-full px-3 rounded-lg"
-                    ></input>
-                  </div>
+                  <div className="text-xs">Example: email@cthings.com</div>
                 </div>
                 <button
                   type="submit"
                   className="w-full h-12 my-4 bg-custom-1 font-extrabold text-custom-5 rounded-lg border"
                 >
-                  Masuk
+                  Daftar
                 </button>
               </form>
               <div className="flex flex-row my-2 justify-between">
                 <div className="w-[27%] h-0 my-auto border"></div>
-                <div className="text-xs">atau masuk dengan</div>
+                <div className="text-xs">atau daftar dengan</div>
                 <div className="w-[27%] h-0 my-auto border"></div>
               </div>
               <button className="flex flex-row w-full h-10 my-4 justify-start space-x-5 bg-custom-1 font-extrabold text-custom-5 rounded-lg border">
@@ -100,6 +72,18 @@ export default function Login() {
                 />
                 <p className="my-auto pl-[72px]">Google</p>
               </button>
+              <div className="text-xs text-center">
+                <p>Dengan mendaftar, saya menyetujui</p>
+                <p>
+                  <Link href="" className="text-custom-4">
+                    Syarat dan Ketentuan
+                  </Link>{" "}
+                  serta{" "}
+                  <Link href="" className="text-custom-4">
+                    Kebijakan Privasi
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
         </div>
