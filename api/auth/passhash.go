@@ -1,7 +1,7 @@
 package auth
 
 import (
-	db "backend/dbSql"
+	db "api/dbSql"
 )
 
 func checkAuth(id string, pass string) bool {

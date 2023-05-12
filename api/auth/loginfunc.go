@@ -1,7 +1,7 @@
 package auth
 
 import (
-	db "backend/dbSql"
+	db "api/dbSql"
 	"net/http"
 
 	"fmt"

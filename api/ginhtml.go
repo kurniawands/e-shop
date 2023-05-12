@@ -1,8 +1,9 @@
-package webHtml
+package api
 
 import (
-	au "backend/auth"
-	db "backend/dbSql"
+	au "api/auth"
+	db "api/dbSql"
+	"net/http"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
@@ -10,8 +11,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func StartS() {
-	r := gin.Default()
+var (
+	app *gin.Engine
+)
+
+func myRoute(r *gin.RouterGroup) {
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("mysession", store))
 	config := cors.DefaultConfig()
@@ -27,5 +31,14 @@ func StartS() {
 		c.JSON(200, prod)
 	})
 	r.POST("/login", au.ULogIn)
-	r.Run(":8000")
+}
+
+func init() {
+	app = gin.New()
+	r := app.Group("/api")
+	myRoute(r)
+}
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	app.ServeHTTP(w, r)
 }
