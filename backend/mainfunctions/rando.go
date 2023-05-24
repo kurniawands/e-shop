@@ -1,4 +1,4 @@
-package mfunc
+package mainfunctions
 
 import (
 	"math/rand"

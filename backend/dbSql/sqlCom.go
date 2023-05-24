@@ -1,8 +1,9 @@
 package dbSql
 
 import (
-	maf "github.com/kurniawands/e-shop/mfunc"
 	"time"
+
+	maf "github.com/kurniawands/e-shop/mainfunctions"
 )
 
 func CheckEmail(email string) bool {
