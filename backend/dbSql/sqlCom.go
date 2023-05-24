@@ -89,7 +89,7 @@ func AddCart(prod string, use string, q int) {
 	return
 }
 
-func checkOut(use string) {
+func CheckOut(use string) {
 	ordid := maf.Genlet(2) + "-" + maf.Gennum(6)
 	db.Query("INSERT INTO orders VALUES ? ? ?", use, ordid, time.Now().Format("2006-01-02"))
 	row, err := db.Query("SELECT productid, quantity FROM cart where iduser = ?", use)
@@ -108,4 +108,5 @@ func checkOut(use string) {
 	for i := range items {
 		db.Query("INSERT INTO orderdetails VALUES ? ? ?", ordid, items[i].ID, items[i].Quantity)
 	}
+	return
 }

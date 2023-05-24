@@ -28,4 +28,12 @@ func StartS() {
 	})
 	r.POST("/login", au.ULogIn)
 	r.Run(":8000")
+	r.POST("/checkout", func(c *gin.Context) {
+		var user string
+		if err := c.ShouldBindJSON(&user); err != nil {
+			c.JSON(404, gin.H{"error": "Invalid request"})
+			return
+		}
+		db.CheckOut(user)
+	})
 }
