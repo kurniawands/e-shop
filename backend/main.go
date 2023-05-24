@@ -1,8 +1,8 @@
 package main
 
 import (
-	"backend/dbSql"
-	"backend/webHtml"
+	"github.com/kurniawands/e-shop/dbSql"
+	"github.com/kurniawands/e-shop/webHtml"
 )
 
 func main() {

@@ -1,9 +1,10 @@
 package testing
 
 import (
-	"backend/dbSql"
 	"net/http"
 	"time"
+
+	"github.com/kurniawands/e-shop/dbSql"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"

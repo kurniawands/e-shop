@@ -9,6 +9,11 @@ type SqlCust struct {
 	Address  string `json:"custaddress"`
 }
 
+type Cart struct {
+	ID string `json="prodid"`
+	Quantity int `json="quantity"`
+}
+
 type UsLog struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`

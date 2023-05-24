@@ -1,4 +1,4 @@
-module backend
+module github.com/kurniawands/e-shop
 
 go 1.20
 

@@ -1,5 +1,10 @@
 package dbSql
 
+import (
+	maf "github.com/kurniawands/e-shop/mfunc"
+	"time"
+)
+
 func CheckEmail(email string) bool {
 	result, err := db.Query("SELECT EXISTS(SELECT 1 FROM users WHERE email =? LIMIT 1)", email)
 	if err != nil {
@@ -76,4 +81,30 @@ func GetPass(id string) string {
 	}
 
 	return pass
+}
+
+func AddCart(prod string, use string, q int) {
+	db.Query("INSERT INTO cart VALUES (?, ?, ?)", prod, use, q)
+	return
+}
+
+func checkOut(use string) {
+	ordid := maf.Genlet(2) + "-" + maf.Gennum(6)
+	db.Query("INSERT INTO orders VALUES ? ? ?", use, ordid, time.Now().Format("2006-01-02"))
+	row, err := db.Query("SELECT productid, quantity FROM cart where iduser = ?", use)
+	if err != nil {
+		panic(err)
+	}
+	var item Cart
+	var items []Cart
+	for row.Next() {
+		err = row.Scan(&item)
+		if err != nil {
+			panic(err)
+		}
+		items = append(items, item)
+	}
+	for i := range items {
+		db.Query("INSERT INTO orderdetails VALUES ? ? ?", ordid, items[i].ID, items[i].Quantity)
+	}
 }

@@ -1,8 +1,9 @@
 package auth
 
 import (
-	db "backend/dbSql"
 	"net/http"
+
+	db "github.com/kurniawands/e-shop/dbSql"
 
 	"fmt"
 

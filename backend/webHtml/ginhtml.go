@@ -1,8 +1,8 @@
 package webHtml
 
 import (
-	au "backend/auth"
-	db "backend/dbSql"
+	au "github.com/kurniawands/e-shop/auth"
+	db "github.com/kurniawands/e-shop/dbSql"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"

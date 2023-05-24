@@ -1,7 +1,7 @@
 package auth
 
 import (
-	db "backend/dbSql"
+	db "github.com/kurniawands/e-shop/dbSql"
 )
 
 func checkAuth(id string, pass string) bool {
